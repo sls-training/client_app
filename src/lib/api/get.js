@@ -1,5 +1,5 @@
 import client from './client';
 
-export const getList = (id) => {
-    return client.get(`/${id}/microposts`);
+export const getList = (userId) => {
+    return client.get(`/${userId}/microposts`);
   };

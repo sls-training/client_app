@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import List from './components/List';
+import UserMicropostsList from './components/users/microposts/GetUserMicroposts.jsx';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path='/:id/microposts' element={<List />}/>
+        <Route exact path='/:userId/microposts' element={<UserMicropostsList />}/>
       </Routes>
     </BrowserRouter>
   );
