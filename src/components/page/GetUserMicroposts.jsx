@@ -17,10 +17,10 @@ const GetUserMicroposts = () => {
   };
 
   useEffect(() => {
-    const fetchBlogs = async () => {
+    const fetchMicroposts = async () => {
       await hundleGetMicroposts(params);
     };
-    fetchBlogs();
+    fetchMicroposts();
   }, [params]);
 
   return (
