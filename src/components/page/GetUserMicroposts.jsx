@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getList } from "../../lib/api/get";
+import { getList } from "../../lib/api/users/microposts/get-user-microposts";
 import { useParams } from "react-router-dom";
 
 // import ValidUserId from "../microposts/ValidUserId";
@@ -12,17 +12,17 @@ const GetUserMicroposts = () => {
   // 無効なユーザーIDの場合のuseState
   const [userError, setUserError] = useState([]);
   // 有効/無効で画面を切り替える際のフラグ
-  const [flag, setFlag] = useState();
+  const [isValid, setIsValid] = useState();
 
   const hundleGetMicroposts = async (params) => {
     try {
       const { data } = await getList(params.userId);
       console.log(data);
       if (isNaN(params.userId) || params.userId >= 101) { // ユーザーIDの型が数値以外か101以上だったらエラー
-        setFlag(false);
+        setIsValid(false);
         setUserError(data.error);
       } else {
-        setFlag(true);
+        setIsValid(true);
         setUserMicroposts(data.microposts);
       }
     } catch (e) {
@@ -60,7 +60,7 @@ const GetUserMicroposts = () => {
     <div>
       <h1>Microposts</h1>
       {/* フラグによって画面切り替え */}
-      {flag === true ?  <ValidUserId /> : <InvalidUserId />}
+      {isValid === true ?  <ValidUserId /> : <InvalidUserId />}
     </div>
   );
 };
