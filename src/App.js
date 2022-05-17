@@ -2,18 +2,20 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import HomePage from './components/page/HomePage';
-import UserMicropostsList from './components/page/GetUserMicroposts.jsx';
+import VuewUserMicropostsPage from './components/page/VuewUserMicropostsPage';
 import NotFound from './components/page/NotFound';
 
 const App = () => {
   return (
+    <div>
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<HomePage />}/>
-        <Route path='/:userId/microposts' element={<UserMicropostsList />}/>
+        <Route path='/users/:userId/microposts/page/:pageNumber/per_page/:perPage' element={<VuewUserMicropostsPage />}/>
         <Route path='*' element={<NotFound />}/>
       </Routes>
     </BrowserRouter>
+    </div>
   );
 };
 export default App;
