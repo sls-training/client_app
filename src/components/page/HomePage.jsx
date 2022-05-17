@@ -1,14 +1,14 @@
 import React from "react";
 
+import UserMicropostsForm from "../UserMicropostsForm";
+
 const HomePage = () => {
-    return (
-      <div>
-        <label>ユーザーIDを入力</label>
-        <input
-          type="number"
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1>Home</h1>
+      <UserMicropostsForm />
+    </div>
+  );
+};
 
 export default HomePage;
