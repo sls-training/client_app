@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const UseridFrom = () => {
+const UserMicropostsForm = () => {
   // ユーザーID
   const [useridValue, setUseridValue] = useState("");
   // ページ数
@@ -11,56 +11,38 @@ const UseridFrom = () => {
 
   const navigate = useNavigate();
 
+  // 値が送信された時のURLの分岐
+  const NavigateUrl = (userid, pageNumber, post) => {
+    // ページ数と表示個数が空欄だった場合
+    if (pageNumber === "" && post === "") {
+      return navigate(`/users/${userid}/microposts/page/1/per_page/30`);
+      // ページ数のみ空欄だった場合
+    } else if (pageNumber === "") {
+      return navigate(`/users/${userid}/microposts/page/1/per_page/${post}`);
+      // 表示個数のみ空欄だった場合
+    } else if (post === "") {
+      return navigate(
+        `/users/${userid}/microposts/page/${pageNumber}/per_page/30`
+      );
+      // どちらも入力があった場合
+    } else {
+      return navigate(
+        `/users/${userid}/microposts/page/${pageNumber}/per_page/${post}`
+      );
+    }
+  };
+
   const handleClick = () => {
     // ユーザーIDが入力されていて、空欄でない場合
     if (useridValue && useridValue.match(/\S/g)) {
-      // ページ数と表示個数が空欄だった場合
-      if (pageNumberValue === "" && postValue === "") {
-        navigate(`/users/${useridValue}/microposts/page/1/per_page/30`);
-        // ページ数のみ空欄だった場合
-      } else if (pageNumberValue === "") {
-        navigate(
-          `/users/${useridValue}/microposts/page/1/per_page/${postValue}`
-        );
-        // 表示個数のみ空欄だった場合
-      } else if (postValue === "") {
-        navigate(
-          `/users/${useridValue}/microposts/page/${pageNumberValue}/per_page/30`
-        );
-        // どちらも入力があった場合
-      } else {
-        navigate(
-          `/users/${useridValue}/microposts/page/${pageNumberValue}/per_page/${postValue}`
-        );
-      }
+      NavigateUrl(useridValue, pageNumberValue, postValue);
     }
   };
 
   const pressEnter = (e) => {
     // Enterキーを押す&ユーザーIDが入力されていて、空欄でない場合
-    if (
-      e.key === "Enter" &&
-      (useridValue && useridValue.match(/\S/g))
-    ) {
-      // ページ数と表示個数が空欄だった場合
-      if (pageNumberValue === "" && postValue === "") {
-        navigate(`/users/${useridValue}/microposts/page/1/per_page/30`);
-        // ページ数のみ空欄だった場合
-      } else if (pageNumberValue === "") {
-        navigate(
-          `/users/${useridValue}/microposts/page/1/per_page/${postValue}`
-        );
-        // 表示個数のみ空欄だった場合
-      } else if (postValue === "") {
-        navigate(
-          `/users/${useridValue}/microposts/page/${pageNumberValue}/per_page/30`
-        );
-        // どちらも入力があった場合
-      } else {
-        navigate(
-          `/users/${useridValue}/microposts/page/${pageNumberValue}/per_page/${postValue}`
-        );
-      }
+    if (e.key === "Enter" && useridValue && useridValue.match(/\S/g)) {
+      NavigateUrl(useridValue, pageNumberValue, postValue);
     }
   };
 
@@ -104,4 +86,4 @@ const UseridFrom = () => {
   );
 };
 
-export default UseridFrom;
+export default UserMicropostsForm;
