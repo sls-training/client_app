@@ -24,18 +24,15 @@ const VuewUserMicropostsPage = () => {
           params.perPage
         ));
 
-        // マイクロポスト数が0じゃなかったら
-        if (data.microposts.length !== 0) {
+        // data.micropostsが存在したら
+        if (data.microposts) {
           setUserMicroposts(data.microposts);
           setIsValid(true);
         } else {
-          // マイクロポスト数が0だった場合にエラー処理させないために同じ処理を書く
-          setUserMicroposts(data.microposts);
-          setIsValid(true);
+          setUserMicropostsError(data.error);
+          console.log("ユーザーが存在しません");
         }
       } catch (e) {
-        setUserMicropostsError(data.error);
-        console.log("ユーザーが存在しません");
         console.log(e.message);
       }
     // userIdが未入力ならエラー
