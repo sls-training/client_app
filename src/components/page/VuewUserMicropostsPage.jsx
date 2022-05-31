@@ -34,6 +34,7 @@ const VuewUserMicropostsPage = () => {
         }
       } catch (e) {
         console.log(e.message);
+        setUserMicropostsError(e.response.data.error);
       }
     // userIdが未入力ならエラー
   } else {
