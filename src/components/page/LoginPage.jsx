@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 
-import { logIn } from "../../lib/api/users/auth-api";
+import { logIn } from "../../lib/api/users/post-user-auth";
 
 const LoginPage = () => {
   // メールアドレス
