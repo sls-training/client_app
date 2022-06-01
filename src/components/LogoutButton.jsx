@@ -9,8 +9,7 @@ const LogoutButton = () => {
     // Cookie削除
     Cookies.remove("access_token");
     Cookies.remove("expiration_at");
-    // ローカルストレージ削除
-    localStorage.removeItem("Flag");
+    Cookies.remove("login_flag");
     navigate("/login");
   };
 

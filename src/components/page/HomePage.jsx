@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 import UserMicropostsForm from "../UserMicropostsForm";
 import LogoutButton from "../LogoutButton";
@@ -18,7 +19,7 @@ const HomePage = () => {
   return (
     <>
       {
-        localStorage.getItem("Flag") ? <Home /> : <Navigate to="/login" />
+        Cookies.get("login_flag") ? <Home /> : <Navigate to="/login" />
       }
     </>
   );

@@ -25,8 +25,7 @@ const LoginPage = () => {
       // Cookieに保存
       Cookies.set("access_token", res.data.success.auth);
       Cookies.set("expiration_at", res.data.success.expirationAt);
-      // ローカルストレージに保存
-      localStorage.setItem('Flag', true);
+      Cookies.set("login_flag", true);
       navigate("/");
     } catch (e) {
       console.log(e.message);
@@ -36,7 +35,7 @@ const LoginPage = () => {
   return (
     <>
       {
-        !localStorage.getItem("Flag") ?
+        !Cookies.get("login_flag") ?
           <div>
             <h1>Login</h1>
             <label>
@@ -45,7 +44,6 @@ const LoginPage = () => {
                 type="email"
                 value={emailValue}
                 placeholder="emailを入力"
-                onKeyPress={handleClick}
                 onChange={(event) => setEmailValue(event.target.value)}
               />
             </label>
@@ -56,7 +54,6 @@ const LoginPage = () => {
                 type="password"
                 value={passwordValue}
                 placeholder="passwordを入力"
-                onKeyPress={handleClick}
                 onChange={(event) => setPasswordValue(event.target.value)}
               />
             </label>
